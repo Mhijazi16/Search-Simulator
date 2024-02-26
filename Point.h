@@ -21,6 +21,15 @@ struct Point{
     return other.X == X && other.Y == Y;
   }
 
+  Point& operator=(const Point& other){
+    if(this != &other){
+      this->X = other.X;
+      this->Y = other.Y;
+    }
+
+    return *this;
+  }
+
   static int GetDistance(const Point one, const Point two){
     return sqrt(pow(one.X - two.X, 2) + pow(one.X - two.Y, 2));
   }
