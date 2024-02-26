@@ -30,6 +30,10 @@ struct Point{
     return *this;
   }
 
+  Point operator*(const int number) const{
+    return Point(number * X, number * Y);
+  }
+
   static int GetDistance(const Point one, const Point two){
     return sqrt(pow(one.X - two.X, 2) + pow(one.X - two.Y, 2));
   }
