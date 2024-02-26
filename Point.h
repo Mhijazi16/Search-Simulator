@@ -17,6 +17,10 @@ struct Point{
     return os;
   }
 
+  bool operator==(const Point& other) const {
+    return other.X == X && other.Y == Y;
+  }
+
   static int GetDistance(const Point one, const Point two){
     return sqrt(pow(one.X - two.X, 2) + pow(one.X - two.Y, 2));
   }
