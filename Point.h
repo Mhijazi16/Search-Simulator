@@ -39,7 +39,11 @@ struct Point{
   }
 
   Point operator+(const Point& other) const{
-    return Point(X-other.X, Y - other.Y);
+    return Point(X+other.X, Y + other.Y);
+  }
+
+  Point operator/(const Point& other) const{
+    return Point(X/other.X , Y / other.Y);
   }
 
   static int GetDistance(const Point one, const Point two){
