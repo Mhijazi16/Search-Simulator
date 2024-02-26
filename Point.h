@@ -46,6 +46,10 @@ struct Point{
     return Point(X/other.X , Y / other.Y);
   }
 
+  Point GetPushPoint(const Point& Target) const{
+    return *this * 2 - Target;
+  }
+
   static int GetDistance(const Point one, const Point two){
     return sqrt(pow(one.X - two.X, 2) + pow(one.X - two.Y, 2));
   }
