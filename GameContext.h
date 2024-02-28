@@ -38,6 +38,11 @@ class GameContext{
       RefreshContext();
     }
 
+    string& MapAt(const Point& location){
+      return Map[location.Y][location.X];
+    }
+
+
   void RefreshContext(){
 
     if(!Meat.empty() || !Boxes.empty()){
