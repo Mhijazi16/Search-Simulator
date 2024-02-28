@@ -54,7 +54,7 @@ class Movement{
       return true;
     }
   
-    bool virtual MovePlayer(Point& Source, Point& Target){
+    bool virtual MoveTo(Point& Source, Point& Target){
 
       string& src = gameContext.MapAt(Source);
       string& tar = gameContext.MapAt(Target); 
