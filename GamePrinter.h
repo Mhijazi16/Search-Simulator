@@ -74,16 +74,16 @@ class GamePrinter{
       cout << "===================================" << "\n";
     }
 
-    static void PrintMap(vector<vector<string>> Map, int score)
+    static void PrintMap()
     {
       sleep_for(milliseconds(Delay));
       cout << "============== " << PURPLE << "CURRENT MAP STATE" << RESET <<  " ==============" << "\n";
-      for (auto row : Map) {
+      for (auto row : gameContext.getMap()) {
         for (auto index : row) 
           cout << index << " " ;
         cout << "\n";
       }
-      cout << BOLD << PURPLE << "SCORE : " << score <<  RESET << endl;
+      cout << BOLD << PURPLE << "SCORE : " << gameContext.score <<  RESET << endl;
       cout << "============== " << PURPLE << "CURRENT MAP STATE" << RESET <<  " ==============" << "\n";
     };
 
