@@ -19,6 +19,7 @@ class GameContext{
     Point Player; 
     int row_limit; 
     int col_limit;
+    int score = 0;
 
     GameContext(){
       Map = {
@@ -36,6 +37,10 @@ class GameContext{
       row_limit = Map.size();
       col_limit = Map[0].size();
       RefreshContext();
+    }
+
+    vector<vector<string>> getMap(){
+      return Map;
     }
 
     string& MapAt(const Point& location){
