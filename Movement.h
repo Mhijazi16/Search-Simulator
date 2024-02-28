@@ -35,4 +35,22 @@ class Movement{
       gameContext = GameContext();
     }
 
+    bool virtual PushBox(Point& Source, Point& Target){
+
+      string& src = gameContext.MapAt(Source);
+      string& tar = gameContext.MapAt(Target); 
+
+      if(InCorner(Source))
+        return false;
+
+      if(tar == WOOD || tar == BASKET){
+        GamePrinter::Alert();
+        return false;
+      }
+
+      tar = src; 
+      src = SPACE;
+      Source = Target;
+      return true;
+    }
 };
