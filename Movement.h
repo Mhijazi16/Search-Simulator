@@ -53,4 +53,36 @@ class Movement{
       Source = Target;
       return true;
     }
+  
+    bool virtual MovePlayer(Point& Source, Point& Target){
+
+      string& src = gameContext.MapAt(Source);
+      string& tar = gameContext.MapAt(Target); 
+
+      if(tar == WOOD || tar == POINT ){
+        GamePrinter::Alert();
+        return false;
+      }
+
+      if(tar == BASKET){
+        auto Next = Target.GetPushPoint(Source); 
+        if(PushBox(Target,Next) == false)
+          return false;
+      }
+
+      if(onMeat){
+        tar = src; 
+        src = MEAT;
+        Source = Target;
+        return true;
+      }
+
+      if(tar == MEAT)
+        onMeat = true;
+
+      src = tar; 
+      tar = PLAYER;
+      Source = Target;
+      return true;
+    }
 };
