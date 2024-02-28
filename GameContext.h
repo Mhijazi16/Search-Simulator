@@ -1,8 +1,11 @@
 #include "Point.h"
 #include "Constants.h"
 #include <vector>
+#include <thread>
+#include <chrono>
 
 using namespace std; 
+
 
 class GameContext{
 
@@ -14,6 +17,7 @@ class GameContext{
     Point Player; 
     int row_limit; 
     int col_limit;
+    int delay; 
 
   public:
 
@@ -51,6 +55,13 @@ class GameContext{
         else if(Map[i][j] == BASKET)
           Boxes.push_back(Point(i,j));
       }
+  }
+
+  void PrintMap(){
+    this_thread::sleep_for(chrono::milliseconds(delay));
+    for(auto row : Map)
+      for(auto cell : row)
+        cout << cell << " ";
   }
 };
 
