@@ -13,14 +13,6 @@ class GameContext{
     vector<vector<string>> Map; 
     vector<vector<string>> Backup; 
 
-  public:
-    vector<Point> Boxes; 
-    vector<Point> Meat; 
-    Point Player; 
-    int row_limit; 
-    int col_limit;
-    int score = 0;
-
     GameContext(){
       Map = {
         {"🪵","🪵","🪵","🪵","🪵","🪵","🪵"},
@@ -37,6 +29,22 @@ class GameContext{
       row_limit = Map.size();
       col_limit = Map[0].size();
       RefreshContext();
+    };
+
+  public:
+    vector<Point> Boxes; 
+    vector<Point> Meat; 
+    Point Player; 
+    int row_limit; 
+    int col_limit;
+    int score = 0;
+
+    GameContext& operator=(const GameContext&) = delete;
+    GameContext(const GameContext&) = delete;
+
+    static GameContext& getInstance(){
+      static GameContext context = GameContext(); 
+      return context;
     }
 
     vector<vector<string>> getMap(){
