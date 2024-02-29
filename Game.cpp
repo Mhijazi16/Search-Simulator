@@ -1,5 +1,4 @@
-#include "ISimulateStrategy.h"
-#include "GamePrinter.h"
+#include "HumanStrategy.h"
 
 class Game{
   private:
@@ -9,13 +8,22 @@ class Game{
     void Start(){
       GamePrinter::Welcome();
       GamePrinter::PrintMap();
-      GamePrinter::GameMenu();
       GamePrinter::Coordinates();
+      cin.ignore();
+      GamePrinter::GameMenu();
       Strategy->Simulate();
     }
 };
 
+
 int main(){
+
+  GameContext::ResetContext();
+  GameContext::RefreshContext();
+  HumanStrategy* strat = new HumanStrategy();
+  Game game = Game(strat); 
+  game.Start();
+
 
   return 0;
 }
