@@ -3,4 +3,8 @@
 #include <vector>
 
 class DepthStrategy: public ISimulateStrategy, Movement{
+
+  void Simulate() override{
+    
+  }
 };
