@@ -33,7 +33,7 @@ class Movement{
 
   public:
 
-    bool virtual CanBePushed(Point Source, Point& Target, bool Perform){
+    bool virtual CanBePushed(Point Source, Point& Target, bool Push){
 
       string& src = GameContext::MapAt(Source);
       string& tar = GameContext::MapAt(Target); 
@@ -48,7 +48,7 @@ class Movement{
         return false;
       }
 
-      if (Perform) 
+      if (Push) 
         PushBox(Source, Target);
 
       return true;
@@ -71,7 +71,7 @@ class Movement{
       return true;
     }
 
-    bool CanBeMoved(Point& Source, Point Target, bool Perform){
+    bool CanBeMoved(Point& Source, Point Target, bool Move){
 
       string& src = GameContext::MapAt(Source);
       string& tar = GameContext::MapAt(Target); 
@@ -83,10 +83,8 @@ class Movement{
 
       if(tar == BASKET){
         auto Next = Target.GetPushPoint(Source); 
-        if(CanBePushed(Target,Next) == false)
+        if(CanBePushed(Target,Next,Move) == false)
           return false;
-        if (Perform) 
-          PushBox(Target, Next);
       }
 
       if(onMeat){
@@ -100,7 +98,7 @@ class Movement{
       if(tar == MEAT)
         onMeat = true;
 
-      if(Perform)
+      if(Move)
         MoveTo(Source, Target);
       return true;
     }
