@@ -1,4 +1,3 @@
-#include "Point.h"
 #include "Constants.h"
 #include <vector>
 #include <thread>
@@ -9,54 +8,29 @@ using namespace std;
 
 class GameContext{
 
-  private:
-    vector<vector<string>> Map; 
-    vector<vector<string>> Backup; 
-
-    GameContext(){
-      Map = {
-        {"🪵","🪵","🪵","🪵","🪵","🪵","🪵"},
-        {"🪵","  ","  ","  ","  ","  ","🪵"},
-        {"🪵","  ","  ","  ","  ","  ","🪵"},
-        {"🪵","  ","🥩","  ","  ","  ","🪵"},
-        {"🪵","  ","  ","🧺","🪵","  ","🪵"},
-        {"🪵","  ","  ","  ","  ","  ","🪵"},
-        {"🪵","  ","  ","🪵","  ","  ","🪵"},
-        {"🪵","  ","  ","  ","  ","  ","🪵"},
-        {"🪵","  ","  ","  ","🐊","  ","🪵"},
-        {"🪵","🪵","🪵","🪵","🪵","🪵","🪵"},};
-      Backup = Map;
-      row_limit = Map.size();
-      col_limit = Map[0].size();
-      RefreshContext();
-    };
-
   public:
-    vector<Point> Boxes; 
-    vector<Point> Meat; 
-    Point Player; 
-    int row_limit; 
-    int col_limit;
-    int score = 0;
 
-    GameContext& operator=(const GameContext&) = delete;
-    GameContext(const GameContext&) = delete;
+  static void ResetContext(){
+    Map = {
+      {"🪵","🪵","🪵","🪵","🪵","🪵","🪵"},
+      {"🪵","  ","  ","  ","  ","  ","🪵"},
+      {"🪵","  ","  ","  ","  ","  ","🪵"},
+      {"🪵","  ","🥩","  ","  ","  ","🪵"},
+      {"🪵","  ","  ","🧺","🪵","  ","🪵"},
+      {"🪵","  ","  ","  ","  ","  ","🪵"},
+      {"🪵","  ","  ","🪵","  ","  ","🪵"},
+      {"🪵","  ","  ","  ","  ","  ","🪵"},
+      {"🪵","  ","  ","  ","🐊","  ","🪵"},
+      {"🪵","🪵","🪵","🪵","🪵","🪵","🪵"},};
+    Backup = Map;
+    row_limit = Map.size();
+    col_limit = Map[0].size();
+    score = 0;
+    Lost = false;
+    RefreshContext();
+  };
 
-    static GameContext& getInstance(){
-      static GameContext context = GameContext(); 
-      return context;
-    }
-
-    vector<vector<string>> getMap(){
-      return Map;
-    }
-
-    string& MapAt(const Point& location){
-      return Map[location.Y][location.X];
-    }
-
-
-  void RefreshContext(){
+  static void RefreshContext(){
 
     if(!Meat.empty() || !Boxes.empty()){
       Meat.clear(); 
@@ -73,5 +47,10 @@ class GameContext{
           Boxes.push_back(Point(i,j));
       }
   }
+
+  static string& MapAt(const Point& location){
+    return Map[location.X][location.Y];
+  }
+
 };
 
