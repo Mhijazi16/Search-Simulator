@@ -48,6 +48,20 @@ struct Point{
     return *this * 2 - Target;
   }
 
+  Point Top(){
+    return Point(X-1,Y);
+  }
+
+  Point Bottom(){
+    return Point(X+1,Y);
+  }
+  Point Left(){
+    return Point(X,Y-1);
+  }
+  Point Right(){
+    return Point(X,Y+1);
+  }
+
   static int GetDistance(const Point one, const Point two){
     return sqrt(pow(one.X - two.X, 2) + pow(one.X - two.Y, 2));
   }
