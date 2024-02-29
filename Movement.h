@@ -33,8 +33,7 @@ class Movement{
 
   public:
 
-
-    bool virtual PushBox(Point Source, Point& Target){
+    bool virtual CanBePushed(Point Source, Point& Target, bool Perform){
 
       string& src = GameContext::MapAt(Source);
       string& tar = GameContext::MapAt(Target); 
@@ -46,8 +45,19 @@ class Movement{
 
       if(tar == WOOD || tar == BASKET){
         GamePrinter::Alert();
-        return true;
+        return false;
       }
+
+      if (Perform) 
+        PushBox(Source, Target);
+
+      return true;
+    }
+
+    bool virtual PushBox(Point Source, Point& Target){
+
+      string& src = GameContext::MapAt(Source);
+      string& tar = GameContext::MapAt(Target); 
 
       if(tar == MEAT){
         score++;
@@ -61,7 +71,7 @@ class Movement{
       return true;
     }
 
-    bool CanBeMoved(Point& Source, Point Target){
+    bool CanBeMoved(Point& Source, Point Target, bool Perform){
 
       string& src = GameContext::MapAt(Source);
       string& tar = GameContext::MapAt(Target); 
@@ -73,8 +83,10 @@ class Movement{
 
       if(tar == BASKET){
         auto Next = Target.GetPushPoint(Source); 
-        if(PushBox(Target,Next) == false)
+        if(CanBePushed(Target,Next) == false)
           return false;
+        if (Perform) 
+          PushBox(Target, Next);
       }
 
       if(onMeat){
@@ -88,6 +100,8 @@ class Movement{
       if(tar == MEAT)
         onMeat = true;
 
+      if(Perform)
+        MoveTo(Source, Target);
       return true;
     }
   
