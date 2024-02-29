@@ -1,4 +1,6 @@
 #include <string>
+#include <vector>
+#include "Point.h"
 
 using namespace std;
 
@@ -8,8 +10,7 @@ using namespace std;
 #define GREEN   "\033[32m"
 #define YELLOW "\033[33m"
 #define BLUE "\033[34m"
-#define MAGENTA "\033[35m"
-#define CYAN    "\033[36m"
+#define MAGENTA "\033[35m" #define CYAN    "\033[36m"
 #define GRAY    "\033[90m"
 #define BOLD    "\033[1m"
 
@@ -25,3 +26,13 @@ const string PLAYER = "🐊";
 const string BASKET = "🧺";
 const string SPACE = "  ";
 static int Delay = 100;
+
+static bool Lost = false;
+static vector<vector<string>> Map; 
+static vector<vector<string>> Backup; 
+static vector<Point> Boxes; 
+static vector<Point> Meat; 
+static Point Player; 
+static int row_limit; 
+static int col_limit;
+static int score;
