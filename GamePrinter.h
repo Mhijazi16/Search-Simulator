@@ -8,15 +8,15 @@ using namespace chrono;
 using namespace this_thread;
 using namespace std; 
 
+
 class GamePrinter{
 
   private:
-    static GameContext gameContext;
+    GamePrinter();
 
   public: 
-    GamePrinter(){
-      gameContext = GameContext();
-    }
+    GamePrinter& operator=(const GamePrinter&) = delete;
+    GamePrinter(const GamePrinter&) = delete;
 
     static void setDelay(int x){
       Delay = x;
@@ -42,15 +42,15 @@ class GamePrinter{
     {
       cin.ignore();
       cout << "============== "<< PURPLE << "COORDINATES " << RESET << " ==============" << "\n";
-      cout << "Player Coordinates : " << gameContext.Player << RESET << "\n"; 
+      cout << "Player Coordinates : " << Player << RESET << "\n"; 
       cout << "Box Coordinates : " ;
-      for (auto box : gameContext.Boxes) 
+      for (auto box : Boxes) 
         cout << PURPLE << box << " "; 
 
       cout << endl; 
 
       cout << RESET << "Points Coordinates : " ;
-      for (auto point : gameContext.Meat)
+      for (auto point : Meat)
         cout << PURPLE << point << " "; 
       cout <<endl <<  "============== "<< PURPLE << "COORDINATES " << RESET << " ==============" << "\n";
     }
@@ -78,12 +78,12 @@ class GamePrinter{
     {
       sleep_for(milliseconds(Delay));
       cout << "============== " << PURPLE << "CURRENT MAP STATE" << RESET <<  " ==============" << "\n";
-      for (auto row : gameContext.getMap()) {
+      for (auto row : Map){
         for (auto index : row) 
           cout << index << " " ;
         cout << "\n";
       }
-      cout << BOLD << PURPLE << "SCORE : " << gameContext.score <<  RESET << endl;
+      cout << BOLD << PURPLE << "SCORE : " << score <<  RESET << endl;
       cout << "============== " << PURPLE << "CURRENT MAP STATE" << RESET <<  " ==============" << "\n";
     };
 
