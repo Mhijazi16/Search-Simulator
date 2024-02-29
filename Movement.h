@@ -1,8 +1,9 @@
 #include "GamePrinter.h"
+#include <chrono>
+#include <thread>
 
 class Movement{
   private: 
-    GameContext gameContext;
     bool onMeat = false;
 
     bool InCorner(Point& Box){
@@ -10,10 +11,10 @@ class Movement{
       int x = Box.X;
       int y = Box.Y;
 
-      auto Top = gameContext.MapAt(Point(x,y-1));
-      auto Bottom = gameContext.MapAt(Point(x,y+1));
-      auto Right = gameContext.MapAt(Point(x+1,y));
-      auto Left = gameContext.MapAt(Point(x-1,y));
+      auto Top = GameContext::MapAt(Point(x,y-1));
+      auto Bottom = GameContext::MapAt(Point(x,y+1));
+      auto Right = GameContext::MapAt(Point(x+1,y));
+      auto Left = GameContext::MapAt(Point(x-1,y));
 
       bool upright = Top == WOOD && Right == WOOD;  
       bool upleft = Top == WOOD && Left == WOOD;  
@@ -31,37 +32,42 @@ class Movement{
     }
 
   public:
-    Movement(){
-      gameContext = GameContext();
-    }
 
-    bool virtual PushBox(Point& Source, Point& Target){
+    bool virtual PushBox(Point Source, Point& Target){
 
-      string& src = gameContext.MapAt(Source);
-      string& tar = gameContext.MapAt(Target); 
+      string& src = GameContext::MapAt(Source);
+      string& tar = GameContext::MapAt(Target); 
 
-      if(InCorner(Source))
-        return false;
-
-      if(tar == WOOD || tar == BASKET){
-        GamePrinter::Alert();
+      if(InCorner(Source)){
+        Lost = true;
         return false;
       }
 
-      tar = src; 
+      if(tar == WOOD || tar == BASKET){
+        GamePrinter::Alert();
+        return true;
+      }
+
+      if(tar == MEAT){
+        score++;
+        tar = POINT;
+      }
+      else 
+        tar = src; 
+
       src = SPACE;
       Source = Target;
       return true;
     }
   
-    bool virtual MoveTo(Point& Source, Point& Target){
+    bool virtual MoveTo(Point& Source, Point Target){
 
-      string& src = gameContext.MapAt(Source);
-      string& tar = gameContext.MapAt(Target); 
+      string& src = GameContext::MapAt(Source);
+      string& tar = GameContext::MapAt(Target); 
 
       if(tar == WOOD || tar == POINT ){
         GamePrinter::Alert();
-        return false;
+        return true;
       }
 
       if(tar == BASKET){
@@ -71,6 +77,7 @@ class Movement{
       }
 
       if(onMeat){
+        onMeat = false;
         tar = src; 
         src = MEAT;
         Source = Target;
@@ -80,7 +87,7 @@ class Movement{
       if(tar == MEAT)
         onMeat = true;
 
-      src = tar; 
+      src = SPACE; 
       tar = PLAYER;
       Source = Target;
       return true;
