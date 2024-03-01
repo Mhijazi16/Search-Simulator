@@ -15,13 +15,13 @@ class HumanStrategy : public ISimulateStrategy, Movement{
         cin >> input; 
 
         if(input == 'w')
-          MoveTo(Player,Player.Top());
+          CanBeMoved(Player,Player.Top(),true);
         else if(input == 's')
-          MoveTo(Player,Player.Bottom());
+          CanBeMoved(Player,Player.Bottom(),true);
         else if(input == 'a')
-          MoveTo(Player,Player.Left());
+          CanBeMoved(Player,Player.Left(),true);
         else if(input == 'd')
-          MoveTo(Player,Player.Right());
+          CanBeMoved(Player,Player.Right(),true);
         else 
           break;
       }

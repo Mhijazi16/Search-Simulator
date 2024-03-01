@@ -1,4 +1,4 @@
-#include "HumanStrategy.h"
+#include "DepthStrategy.h"
 
 class Game{
   private:
@@ -9,8 +9,8 @@ class Game{
       GamePrinter::Welcome();
       GamePrinter::PrintMap();
       GamePrinter::Coordinates();
+      cout << "🏁🏁PRESS ENTER TO START🏁🏁";
       cin.ignore();
-      GamePrinter::GameMenu();
       Strategy->Simulate();
     }
 };
@@ -18,9 +18,8 @@ class Game{
 
 int main(){
 
+  DepthStrategy* strat = new DepthStrategy();
   GameContext::ResetContext();
-  GameContext::RefreshContext();
-  HumanStrategy* strat = new HumanStrategy();
   Game game = Game(strat); 
   game.Start();
 
