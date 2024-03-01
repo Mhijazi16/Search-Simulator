@@ -6,6 +6,8 @@ class Movement{
   private: 
     bool onMeat = false;
 
+  public:
+
     bool InCorner(Point& Box){
 
       int x = Box.X;
@@ -30,8 +32,6 @@ class Movement{
       return false;
 
     }
-
-  public:
 
     bool virtual CanBePushed(Point Source, Point& Target, bool Push){
 
@@ -116,4 +116,24 @@ class Movement{
       Source = Target;
       return true;
     }
+
+  Point CloserDirection(Point& Source, Point& Target){
+
+    Point Next = Target - Source;
+    //GO UP
+    if(Next.X < 0 && CanBeMoved(Source, Source + Point(-1,0), false))
+      return Source + Point(-1,0);
+    //GO DOWN
+    else if(Next.X > 0 && CanBeMoved(Source, Source + Point(1,0), false))
+      return Source + Point(1,0);
+    //GO LEFT
+    else if(Next.Y < 0 && CanBeMoved(Source, Source + Point(0,-1), false))
+      return Source + Point(0,-1);
+    //GO Right
+    else if(Next.Y > 0 && CanBeMoved(Source, Source + Point(0,1), false))
+      return Source + Point(0,1);
+
+    return Point(0,0);
+  }
+
 };
