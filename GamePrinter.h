@@ -22,6 +22,16 @@ class GamePrinter{
       Delay = x;
     }
 
+    static void CongratsMap(){
+      for(auto& row : Map)
+        for(auto& cell : row)
+          if(cell == WOOD){
+            cell = "🧨";
+            Delay = 80;
+            GamePrinter::PrintMap();
+          }
+    }
+
     static void GameWon(){
       cout << "🧨🧨🧨🧨🧨🧨🧨🧨🧨🧨🧨🧨🧨🧨🧨🧨🧨🧨🧨🧨🧨🧨" << endl;
       cout << BOLD << PURPLE << "🧨🧨🧨 CONGRATS YOU FINISHED THE GAME 🧨🧨🧨" << RESET << endl;
@@ -33,6 +43,13 @@ class GamePrinter{
       cout << "🛢️🛢️🛢️🛢️🛢️🛢️🛢️ YOU HAVE LOST  🛢️🛢️🛢️🛢️🛢️🛢️🛢️" << endl;
       cout << "🛢️🛢️🛢️🛢️🛢️🛢️🛢️🛢️🛢️🛢️🛢️🛢️🛢️🛢️🛢️🛢️🛢️🛢️🛢️🛢️🛢️🛢️" << endl;
     }
+
+    static void LimitExceeded(int limit){
+      cout << "🛸🛸🛸🛸🛸🛸🛸🛸🛸🛸🛸🛸🛸🛸🛸🛸🛸🛸🛸🛸🛸🛸" << endl;
+      cout << GREEN << "🛸🛸 LIMIT EXCEEDED!! "<< limit << " EXTENDING LIMIT 🛸🛸" << endl;
+      cout << "🛸🛸🛸🛸🛸🛸🛸🛸🛸🛸🛸🛸🛸🛸🛸🛸🛸🛸🛸🛸🛸🛸" << endl;
+    }
+
     static void Alert(){
       cout << RED << "!!! YOU CAN\'T GO THERE " << "🪵/💥" << " TRY OTHER DIRECTIONS !!!" << endl;
       return; 
