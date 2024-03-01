@@ -21,11 +21,46 @@ class DepthStrategy: public ISimulateStrategy, Movement{
 
     void ExecutionSpeed()
     {
-      // while (!done) cin >> Delay; 
+      while (!done) cin >> Delay; 
     }
 
     void Execution(){
       // SimulatePlayerPath();
+    }
+
+    bool DFS(Point& Source,Point& Direction,Point& Target){
+
+      GamePrinter::PrintMap();
+
+      if(Source == Target)
+        return true;
+
+      string& cell = GameContext::MapAt(Direction);
+
+      if(cell != "  " || Path.size() == Distance )
+        return false;
+
+      if(!CanBeMoved(Source,Direction,false))
+        return false;
+
+      if(cell != PLAYER && cell != BASKET){
+        cell = TEST;
+        Path.push_back(Source);
+      }
+
+      for (auto Side : Directions) 
+      {
+        Point next = Direction+Side;
+        if(DFS(Direction,next,Target))
+          return true;
+      }
+
+      if(cell != PLAYER){
+        cell = "  "; 
+        Path.pop_back();
+      }
+
+      return false;
     }
 
     void Simulate() override
