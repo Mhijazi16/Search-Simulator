@@ -44,7 +44,7 @@ class Movement{
       }
 
       if(tar == WOOD || tar == BASKET){
-        GamePrinter::Alert();
+        if(Push) GamePrinter::Alert();
         return false;
       }
 
@@ -76,8 +76,11 @@ class Movement{
       string& src = GameContext::MapAt(Source);
       string& tar = GameContext::MapAt(Target); 
 
+      if(src == tar)
+        return true;
+
       if(tar == WOOD || tar == POINT ){
-        GamePrinter::Alert();
+        if(Move) GamePrinter::Alert();
         return false;
       }
 

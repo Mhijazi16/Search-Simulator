@@ -11,12 +11,20 @@ struct Point{
   Point(int x,int y): X(x), Y(y){};
 
   friend ostream& operator<<(ostream& os, const Point& point){
-    os << "[" << point.X << " " << point.Y << "]";
+    os << "[" << point.Y << " " << point.X << "]";
     return os;
   }
 
   bool operator==(const Point& other) const {
     return other.X == X && other.Y == Y;
+  }
+
+  bool operator<(const Point other) const{
+    return X < other.X && Y < other.Y;
+  }
+
+  bool operator>(const Point other) const{
+    return X > other.X && Y > other.Y;
   }
 
   Point& operator=(const Point& other){
@@ -63,7 +71,7 @@ struct Point{
   }
 
   static int GetDistance(const Point one, const Point two){
-    return sqrt(pow(one.X - two.X, 2) + pow(one.X - two.Y, 2));
+    return sqrt(pow(one.X - two.X, 2) + pow(one.Y - two.Y, 2));
   }
 
 };
