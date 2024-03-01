@@ -14,11 +14,11 @@ class GameContext{
     Map = {
       {"🪵","🪵","🪵","🪵","🪵","🪵","🪵"},
       {"🪵","  ","  ","  ","  ","  ","🪵"},
+      {"🪵","🧺","  ","  ","  ","  ","🪵"},
+      {"🪵","🥩","  ","  ","  ","  ","🪵"},
+      {"🪵","  ","  ","  ","🪵","  ","🪵"},
       {"🪵","  ","  ","  ","  ","  ","🪵"},
-      {"🪵","  ","🥩","  ","  ","  ","🪵"},
-      {"🪵","  ","  ","🧺","🪵","  ","🪵"},
-      {"🪵","  ","  ","  ","  ","  ","🪵"},
-      {"🪵","  ","  ","🪵","  ","  ","🪵"},
+      {"🪵","  ","🪵","🪵","  ","  ","🪵"},
       {"🪵","  ","  ","  ","  ","  ","🪵"},
       {"🪵","  ","  ","  ","🐊","  ","🪵"},
       {"🪵","🪵","🪵","🪵","🪵","🪵","🪵"},};
@@ -46,6 +46,18 @@ class GameContext{
         else if(Map[i][j] == BASKET)
           Boxes.push_back(Point(i,j));
       }
+  }
+
+  static Point EmptyLocation(Point& location){
+
+    if(MapAt(location.Top()) == "  ")
+      return location.Top();
+    else if(MapAt(location.Bottom()) == "  ")
+      return location.Bottom();
+    else if(MapAt(location.Right()) == "  ")
+      return location.Right();
+
+      return location.Left();
   }
 
   static string& MapAt(const Point& location){
