@@ -55,6 +55,12 @@ class GamePrinter{
       return; 
     }
 
+    static void GameStart(){
+      cout << "🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁" << endl;
+      cout << "🏁🏁 PRESS ENTER TO START 🏁🏁" << endl;
+      cout << "🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁" << endl;
+    }
+
     static void Coordinates() 
     {
       cin.ignore();

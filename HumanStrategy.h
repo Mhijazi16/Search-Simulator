@@ -26,8 +26,10 @@ class HumanStrategy : public ISimulateStrategy, Movement{
           break;
       }
 
-      if(!Lost)
+      if(!Lost){
+        GamePrinter::CongratsMap();
         GamePrinter::GameWon();
+      }
 
     }
 
