@@ -25,7 +25,25 @@ class DepthStrategy: public ISimulateStrategy, Movement{
     }
 
     void Execution(){
-      // SimulatePlayerPath();
+      SimulatePlayerPath();
+    }
+
+    void SimulatePlayerPath(){
+
+      auto Target = Boxes[0].GetPushPoint(Meat[0]);
+      Distance = Point::GetDistance(Player, Target);
+      auto next = GameContext::EmptyLocation(Player);
+
+      while (!DFS(Player,next,Target)){
+        Distance++;
+        Delay = 200;
+        GamePrinter::LimitExceeded(Distance);
+        sleep_for(seconds(2));
+      }
+
+      done = true;
+      GameContext::MapAt(Target) = TEST;
+      Path.push_back(Target);
     }
 
     bool DFS(Point& Source,Point& Direction,Point& Target){
