@@ -6,11 +6,11 @@ Sokoban.AI is an AI-based solver for the classic Sokoban game. The solver utiliz
 
 - [Introduction](#introduction)
 - [Game Interface](#game-interface)
+- [Showcase](#showcase)
 - [Algorithms](#algorithms)
 - [Installation](#installation)
-- [Usage](#usage)
 - [Contributing](#contributing)
-- [License](#license)
+
 
 ## Introduction
 
@@ -43,6 +43,18 @@ Here is an example of a Sokoban game level:
 🪵    🥩🪵
 🪵🪵🪵🪵🪵
 ```
+
+## Showcase 
+
+
+https://github.com/Mhijazi16/SOKOBAN.AI/assets/45119497/d98a672e-62c8-474d-a9af-94ab7fe88777
+
+
+
+![20240301_23h33m34s_grim](https://github.com/Mhijazi16/SOKOBAN.AI/assets/45119497/40462634-8607-4698-abeb-4cea896ce290)
+
+![20240301_23h31m43s_grim](https://github.com/Mhijazi16/SOKOBAN.AI/assets/45119497/542ee03e-a33b-42a2-9e21-9b21c1afc86b)
+
 
 ## Algorithms
 
