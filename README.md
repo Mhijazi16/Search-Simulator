@@ -1,6 +1,6 @@
-# Sokoban.AI
+# Search-Simulator
 
-Sokoban.AI is an AI-based solver for the classic Sokoban game. The solver utilizes various search algorithms to find solutions for different game levels. This project aims to demonstrate the application of artificial intelligence in solving puzzle games efficiently.
+Search-Simulator is a game solver for the classic Sokoban game. The solver utilizes various search algorithms to find solutions for different game levels. This project aims to demonstrate the application of artificial intelligence in solving puzzle games efficiently.
 
 ## Table of Contents
 
